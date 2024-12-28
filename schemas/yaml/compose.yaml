@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
+  "$id": "https://example.com/schemas/compose",
+  "type": "object",
+  "title": "Compose Specification",
+  "description": "The Compose file is a YAML file defining a multi-containers based application.",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Declared for backward compatibility, ignored."
+    },
+    "name": {
+      "type": "string",
+      "description": "Define the Compose project name, until user defines one explicitly."
+    },
+    "services": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "type": "object",
+          "properties": {
+            "image": { "type": "string" },
+            "container_name": { "type": "string" },
+            "ports": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "volumes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "env_file": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "depends_on": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "restart": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "networks": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "$ref": "#/definitions/network"
+        }
+      }
+    },
+    "volumes": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "type": ["object", "null"],
+          "description": "Volumes can be defined as objects or empty mappings."
+        }
+      }
+    },
+    "secrets": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "$ref": "#/definitions/secret"
+        }
+      },
+      "additionalProperties": false
+    },
+    "configs": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9._-]+$": {
+          "$ref": "#/definitions/config"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": { "^x-": {} },
+  "additionalProperties": false,
+  "definitions": {
+    "network": {
+      "type": "object",
+      "properties": {
+        "driver": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "secret": {
+      "type": "object",
+      "properties": {
+        "file": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "file": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
