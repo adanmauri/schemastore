@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "MegaLinter Configuration Schema",
-  "description": "Schema for validating mega-linter configuration files.",
+  "description": "Schema for validating MegaLinter configuration files.",
   "type": "object",
   "properties": {
     "APPLY_FIXES": {
@@ -32,88 +32,27 @@
       "type": "string",
       "description": "Regex pattern to exclude files from linting."
     },
-    "JSON_JSONLINT_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude JSON files from linting."
-    },
-    "YAML_YAMLLINT_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude YAML files from Yamllint."
-    },
-    "YAML_PRETTIER_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude YAML files from Prettier."
-    },
-    "YAML_V8R_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude YAML files from V8R."
-    },
-    "BASH_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude Bash files from linting."
-    },
-    "MARKDOWN_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude Markdown files from linting."
-    },
-    "MARKDOWN_MARKDOWN_LINK_CHECK_DISABLE_ERRORS": {
-      "type": "boolean",
-      "description": "Disable errors for Markdown link check linter."
-    },
-    "SPELL_VALE_FILE_EXTENSIONS": {
-      "type": "array",
-      "items": { "type": "string" },
-      "description": "File extensions for which Vale spell checker should run."
-    },
-    "SPELL_FILTER_REGEX_EXCLUDE": {
-      "type": "string",
-      "description": "Regex pattern to exclude files from spell checking."
-    },
-    "DOCKERFILE_HADOLINT_ARGUMENTS": {
-      "type": "string",
-      "description": "Arguments to pass to Hadolint for Dockerfiles."
-    },
-    "REPOSITORY_TRIVY_ARGUMENTS": {
-      "type": "array",
-      "items": { "type": "string" },
-      "description": "Arguments to pass to Trivy repository scanner."
-    },
-    "SHOW_ELAPSED_TIME": {
-      "type": "boolean",
-      "description": "Whether to display elapsed time for linting."
-    },
-    "FLAVOR_SUGGESTIONS": {
-      "type": "boolean",
-      "description": "Enable or disable flavor suggestions."
-    },
-    "EMAIL_REPORTER": {
-      "type": "boolean",
-      "description": "Enable or disable email reporting."
-    },
-    "FILEIO_REPORTER": {
-      "type": "boolean",
-      "description": "Enable or disable file I/O reporting."
-    },
-    "JSON_REPORTER": {
-      "type": "boolean",
-      "description": "Enable or disable JSON reporting."
-    },
-    "GITHUB_STATUS_REPORTER": {
-      "type": "boolean",
-      "description": "Enable or disable GitHub status reporting."
-    },
-    "PLUGINS": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "List of plugin URLs to use with MegaLinter."
-    },
     "PRE_COMMANDS": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "command": { "type": "string" },
-          "cwd": { "type": "string" }
+          "command": {
+            "type": "string",
+            "description": "Command to execute."
+          },
+          "cwd": {
+            "type": "string",
+            "description": "Working directory for the command."
+          },
+          "continue_if_failed": {
+            "type": "boolean",
+            "description": "Whether to continue execution if this command fails."
+          },
+          "venv": {
+            "type": "string",
+            "description": "Virtual environment to use for the command."
+          }
         },
         "required": ["command", "cwd"],
         "additionalProperties": false
@@ -125,13 +64,49 @@
       "items": {
         "type": "object",
         "properties": {
-          "command": { "type": "string" },
-          "cwd": { "type": "string" }
+          "command": {
+            "type": "string",
+            "description": "Command to execute."
+          },
+          "cwd": {
+            "type": "string",
+            "description": "Working directory for the command."
+          },
+          "continue_if_failed": {
+            "type": "boolean",
+            "description": "Whether to continue execution if this command fails."
+          },
+          "venv": {
+            "type": "string",
+            "description": "Virtual environment to use for the command."
+          }
         },
         "required": ["command", "cwd"],
         "additionalProperties": false
       },
       "description": "List of commands to run after linting."
+    },
+    "REPORTER": {
+      "type": "string",
+      "enum": ["json", "fileio", "email", "github-status"],
+      "description": "Specify the type of reporting."
+    },
+    "SHOW_ELAPSED_TIME": {
+      "type": "boolean",
+      "description": "Whether to display elapsed time for linting."
+    },
+    "PLUGINS": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "List of plugin URLs to use with MegaLinter."
+    },
+    "MARKDOWN_MARKDOWN_LINK_CHECK_DISABLE_ERRORS": {
+      "type": "boolean",
+      "description": "Disable errors for Markdown link check linter."
+    },
+    "YAML_YAMLLINT_FILTER_REGEX_EXCLUDE": {
+      "type": "string",
+      "description": "Regex pattern to exclude YAML files from Yamllint."
     }
   },
   "additionalProperties": false
