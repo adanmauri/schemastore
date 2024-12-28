@@ -1,6 +1,6 @@
 # Schema Store Repository
 
-Welcome to the **Schema Store Repository**, a collection of JSON and YAML schemas designed to provide validation and standardization for various configuration files. This repository simplifies the development process by ensuring that your configuration files comply with the expected structure and format that are not included in popular schema repositories.
+Welcome to the **Schema Store Repository**, a collection of JSON and YAML schemas designed to provide validation and standardization for various configuration files. This repository simplifies the development process by offering schemas for configurations that are often missing from popular schema repositories like [SchemaStore.org](https://www.schemastore.org/).
 
 ---
 
