@@ -1,10 +1,26 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Generic Object Schema",
-  "description": "A schema that allows defining any object with flexible structure.",
+  "title": "Flexible Object Schema",
+  "description": "A schema that allows defining objects with flexible structures, including nested properties of various types.",
   "type": "object",
   "additionalProperties": {
-    "type": "object",
-    "description": "Allows nested objects with no restriction on their structure."
+    "anyOf": [
+      {
+        "type": "object",
+        "description": "Allows nested objects with no restriction on their structure."
+      },
+      {
+        "type": "string",
+        "description": "Allows properties that are strings."
+      },
+      {
+        "type": "boolean",
+        "description": "Allows properties that are boolean values."
+      },
+      {
+        "type": "integer",
+        "description": "Allows properties that are integers."
+      }
+    ]
   }
 }
