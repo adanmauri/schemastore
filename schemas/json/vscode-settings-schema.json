@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generic Object Schema",
+  "description": "A schema that allows defining any object with flexible structure.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "description": "Allows nested objects with no restriction on their structure."
+  }
+}

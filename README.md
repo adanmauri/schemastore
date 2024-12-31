@@ -21,19 +21,24 @@ This repository includes the following schemas:
 
 #### `package-lock.json`
 - **Description**: Validates the structure of `package-lock.json` files used by Node.js projects.
-- **Location**: `json/package-lock.json`
+- **Location**: `json/package-lock-schema.json`
 - **Usage**: Ensures the integrity and consistency of your package dependencies.
+
+#### `.vscode/settings.json`
+- **Description**: Validates the structure of `.vscode/settings.json` files used by Visual Studio Code.
+- **Location**: `json/vscode-settings-schema.json`
+- **Usage**: Ensures correct configurations for your VSCode workspace settings.
 
 ### YAML Schemas
 
 #### `compose.yaml`
 - **Description**: Validates the structure of Docker Compose configuration files.
-- **Location**: `yaml/compose.yaml`
+- **Location**: `yaml/compose-schema.yaml`
 - **Usage**: Ensures your Docker Compose files are properly configured for multi-container applications.
 
 #### `mega-linter.yaml`
 - **Description**: Validates MegaLinter configuration files.
-- **Location**: `yaml/mega-linter.yaml`
+- **Location**: `yaml/mega-linter-schema.yaml`
 - **Usage**: Ensures your MegaLinter setup adheres to expected standards and structure.
 
 ---
